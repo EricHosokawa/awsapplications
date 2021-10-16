@@ -12,14 +12,18 @@ namespace AWSServerlessApp.Controllers
     [Route("api/[controller]")]
     public class TesteController : ControllerBase
     {
-        // POST: api/Teste
+        /// <summary>
+        /// POST que insere o objeto Teste
+        /// </summary>
+        /// <param name="teste"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task PostAsync([FromBody] TesteModel teste)
         {
             teste.Id = Guid.NewGuid().ToString();
             teste.DataCriacao = DateTime.UtcNow;
 
-            await teste.SalvarAsync();
+            await teste.SaveAsync();
 
             Console.WriteLine($"Save Teste Model sucessfully. Id: {teste.Id}");
         }
